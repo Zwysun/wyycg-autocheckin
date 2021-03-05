@@ -150,8 +150,7 @@ if __name__ == "__main__":
                 failure.append(cookie)
                 msg.append(message)
     outputmsg = str(msg).replace("[", '').replace(']', '').replace(',', '<br>').replace('\'', '')
-    teleinfomsg = '''
-    感谢使用来自GamerNoTitle的网易云游戏自动签到脚本！
+    teleinfomsg = '''感谢使用来自GamerNoTitle的网易云游戏自动签到脚本！
     今日签到结果如下：
     成功数量：{0}/{2}
     失败数量：{1}/{2}
