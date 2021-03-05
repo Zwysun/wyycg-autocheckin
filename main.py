@@ -7,6 +7,7 @@ tele_enable = False
 sc_enable = False
 qq_enable = False
 pp_enable = False
+ding_enable = False
 sign_url = 'https://n.cg.163.com/api/v2/sign-today'
 current = 'https://n.cg.163.com/api/v2/client-settings/@current'
 
@@ -15,8 +16,9 @@ cookies = sys.argv[1].split('#')
 teleid = sys.argv[2]
 teletoken = sys.argv[3]
 sckey = sys.argv[4]
-qqkey = sys.argv[5]
-ppkey = sys.argv[6]
+dingkey = sys.argv[5]
+qqkey = sys.argv[6]
+ppkey = sys.argv[7]
 
 if cookies == "":
     print('[网易云游戏自动签到]未设置cookie，正在退出……')
@@ -26,6 +28,8 @@ if teleid != "" and teletoken != "":
     bot = telepot.Bot(teletoken)
 if sckey != "":
     sc_enable = True
+if dingkey != "":
+    ding_enable = True
 if qqkey != "":
     qq_enable = True
 if ppkey != '':
@@ -87,6 +91,11 @@ def scsend(SCKEY, message):
     sc_url = 'http://sc.ftqq.com/{}.send?text=网易云游戏自动签到脚本&desp={}'.format(SCKEY, message)
     if sc_enable:
         r.get(url=sc_url)
+ 
+def dingsend(DingKEY, message):
+    ding_url = 'https://api.zwya.ga/dingtalk/send?card=1&token={}&title=网易云游戏自动签到脚本&text={}'.format(DingKEY, message)
+    if ding_enable:
+        r.get(url=ding_url)
         
 def qqsend(QQKEY, message):
     qq_url = 'https://push.xuthus.cc/send/{}?c=网易云游戏自动签到脚本\n{}'.format(QQKEY, message)
@@ -184,6 +193,7 @@ if __name__ == "__main__":
 
     send(teleid, teleinfomsg)
     scsend(sckey, scinfomsg)
+    dingsend(dingkey, scinfomsg)
     qqsend(qqkey, qqinfomsg)
     ppsend(ppkey, ppinfomsg)
     print(teleinfomsg)
