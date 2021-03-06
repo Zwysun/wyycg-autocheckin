@@ -95,7 +95,7 @@ def scsend(SCKEY, message):
 def dingsend(DingKEY, message):
     ding_url = 'https://api.zwya.ga/dingtalk/send?card=1&token={}&title=网易云游戏自动签到脚本&text={}'.format(DingKEY, message)
     if ding_enable:
-        r.get(url=ding_url)
+        r.post(url=ding_url)
         
 def qqsend(QQKEY, message):
     qq_url = 'https://push.xuthus.cc/send/{}?c=网易云游戏自动签到脚本\n{}'.format(QQKEY, message)
